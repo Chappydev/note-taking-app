@@ -1,0 +1,45 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 16px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input,
+button,
+textarea {
+  display: block;
+}
+
+#note-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#note-container {
+  padding: 1em;
+  display: grid;
+  grid-auto-flow: row;
+  /* this works for columns for now,
+  but maybe try to figure out how to
+  make the # of clms respond to the 
+  # of notes */
+  grid-template-columns: repeat(3, 150px);
+  grid-auto-rows: 200px;
+  gap: 1em;
+}
