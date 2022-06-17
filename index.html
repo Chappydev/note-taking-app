@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Note-Taking App</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <h1>Note-Taking App</h1>
+  <main>
+    <form id="note-form">
+      <input type="text" id="title-input">
+      <textarea id="text-input"></textarea>
+      <button type="submit" id="note-submit">Create Note</button>
+    </form>
+    <div id="note-container">
+      <!-- Use grid? -->
+      <article class="note">
+        <h2 class="note-title">This is a note</h2>
+        <p class="note-text">Your note's content will go here...</p>
+      </article>
+    </div>
+  </main>
+</body>
+</html>
