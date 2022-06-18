@@ -1,4 +1,6 @@
 *, *::before, *::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -39,8 +41,8 @@ textarea {
   but maybe try to figure out how to
   make the # of clms respond to the 
   # of notes */
-  grid-template-columns: repeat(3, 250px);
-  grid-auto-rows: 250px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 200px;
   gap: 1em;
 }
 
@@ -58,4 +60,21 @@ textarea {
 
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media only screen and (min-width: 481px) {
+  #note-container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 250px;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  #note-container {
+    grid-template-columns: repeat(3, 230px);
+  }
+}
+
+@media only screen and (max-width: 480px) {
+
 }
