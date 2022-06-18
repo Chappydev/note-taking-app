@@ -39,7 +39,23 @@ textarea {
   but maybe try to figure out how to
   make the # of clms respond to the 
   # of notes */
-  grid-template-columns: repeat(3, 150px);
-  grid-auto-rows: 200px;
+  grid-template-columns: repeat(3, 250px);
+  grid-auto-rows: 250px;
   gap: 1em;
+}
+
+.note {
+  border: 1px solid black;
+  overflow: hidden;
+}
+
+.note-title {
+  white-space: nowrap;
+  overflow: clip;
+}
+
+.note-text {
+
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
