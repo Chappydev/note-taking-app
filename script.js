@@ -1,5 +1,5 @@
 const noteGrid = document.querySelector("#note-container");
-console.log(noteGrid)
+const noteForm = document.querySelector("#note-form");
 
 let notes;
 if (localStorage.getItem("notes") !== null) {
@@ -29,14 +29,30 @@ function addNote({ title, content }) {
   const noteParagraph = document.createElement("p");
   noteParagraph.classList.add("note-text");
 
-  const noteTitleText = document.createTextNode(title);
-  noteHeader.appendChild(noteTitleText);
+  if (title !== "") {
+    const noteTitleText = document.createTextNode(title);
+    noteHeader.appendChild(noteTitleText);
+    note.appendChild(noteHeader);
+  } else {
+    note.dataset.title = "none";
+  };
 
-  const noteContentText = document.createTextNode(content);
-  noteParagraph.appendChild(noteContentText);
+  if (content !== "") {
+    const noteContentText = document.createTextNode(content);
+    noteParagraph.appendChild(noteContentText);
+    note.appendChild(noteParagraph);
+  };
 
-  note.appendChild(noteHeader);
-  note.appendChild(noteParagraph);
 
   noteGrid.appendChild(note);
 }
+
+noteForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const titleInput = noteForm.children[0];
+  const contentInput = noteForm.children[1];
+  const newNoteObj = createNoteObject(titleInput.value, contentInput.value);
+  notes.push(newNoteObj);
+  localStorage.setItem("notes", JSON.stringify(notes));
+  addNote(newNoteObj);
+})

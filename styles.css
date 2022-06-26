@@ -117,7 +117,7 @@ textarea {
   overflow: hidden;
 }
 
-.note::after {
+.note:not([data-title])::after {
   content: '';
   background-color: var(--tertiary);
   position: absolute;
@@ -140,7 +140,7 @@ textarea {
 }
 
 .note-text {
-
+  white-space: pre-wrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
