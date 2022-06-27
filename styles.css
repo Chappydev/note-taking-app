@@ -145,6 +145,22 @@ textarea {
   text-overflow: ellipsis;
 }
 
+.bi.bi-three-dots-vertical {
+  fill: var(--secondary-darker);
+  fill-opacity: 0.6;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: calc(var(--h2-font-size) + 1rem + 4px);
+  width: auto;
+  padding: 0.6rem;
+  z-index: 2;
+}
+
+.bi.bi-three-dots-vertical:hover {
+  fill-opacity: 0.9;
+}
+
 @media only screen and (max-width: 480px) {
 
   #form-container {

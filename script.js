@@ -23,6 +23,8 @@ function addNote({ title, content }) {
   const note = document.createElement("article");
   note.classList.add("note");
 
+  note.innerHTML = '<svg width="16px" height="16px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-three-dots-vertical"><path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>';
+
   const noteHeader = document.createElement("h2");
   noteHeader.classList.add("note-title");
 
@@ -42,6 +44,12 @@ function addNote({ title, content }) {
     noteParagraph.appendChild(noteContentText);
     note.appendChild(noteParagraph);
   };
+
+  // const threeDots = document.createElement("object");
+  // threeDots.classList.add("svg", "three-dots");
+  // threeDots.setAttribute("type", "image/svg+xml");
+  // threeDots.setAttribute("data", "three-dots-vertical-svgrepo-com.svg");
+  // note.appendChild(threeDots);
 
 
   noteGrid.appendChild(note);
