@@ -45,12 +45,32 @@ function addNote({ title, content }) {
     note.appendChild(noteParagraph);
   };
 
-  // const threeDots = document.createElement("object");
-  // threeDots.classList.add("svg", "three-dots");
-  // threeDots.setAttribute("type", "image/svg+xml");
-  // threeDots.setAttribute("data", "three-dots-vertical-svgrepo-com.svg");
-  // note.appendChild(threeDots);
+  const hiddenMenu = document.createElement("div");
+  hiddenMenu.classList.add("hidden-menu");
 
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("delete-button", "menu-button");
+  const deleteText = document.createTextNode("Delete");
+  const deleteSVGObjElement = document.createElement("object");
+  deleteSVGObjElement.classList.add("delete-svg", "menu-icon");
+  deleteSVGObjElement.setAttribute("type", "image/svg+xml");
+  deleteSVGObjElement.setAttribute("data", "delete-svg-2.svg");
+  deleteButton.appendChild(deleteSVGObjElement);
+  deleteButton.appendChild(deleteText);
+
+  hiddenMenu.appendChild(deleteButton);
+
+  note.appendChild(hiddenMenu);
+  hiddenMenu.style.display = 'none';
+
+  const menuOpenButton = note.querySelector(".bi-three-dots-vertical");
+  menuOpenButton.addEventListener("click", (e) => {
+    if (hiddenMenu.style.display === 'none') {
+      hiddenMenu.style.display = 'flex';
+    } else if (hiddenMenu.style.display === 'flex') {
+      hiddenMenu.style.display = 'none';
+    }
+  })
 
   noteGrid.appendChild(note);
 }

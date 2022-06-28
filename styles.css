@@ -65,6 +65,14 @@ textarea {
   display: block;
 }
 
+button {
+  border: none;
+  color: inherit;
+  text-decoration: none;
+  background-color: none;
+  font-weight: 500;
+}
+
 #note-form {
   background-color: var(--light-text);
   padding: 1em;
@@ -159,6 +167,38 @@ textarea {
 
 .bi.bi-three-dots-vertical:hover {
   fill-opacity: 0.9;
+}
+
+.hidden-menu {
+  position: absolute;
+  right: 0;
+  top: calc(var(--h2-font-size) + 1rem + 4px);
+  display: none;
+  flex-direction: column;
+  min-width: 90px;
+  border: 1px solid var(--dark-text);
+  border-top: none;
+  border-right: none;
+  border-radius: 0px 0px 0px 8px;
+}
+
+.menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--light-text);
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid #0b153134;
+}
+
+.menu-button:last-of-type {
+  border-bottom: none;
+  border-bottom-left-radius: 8px;
+}
+
+.menu-icon {
+  height: 1.2em;
 }
 
 @media only screen and (max-width: 480px) {
