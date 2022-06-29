@@ -65,11 +65,25 @@ function addNote({ title, content }) {
 
   const menuOpenButton = note.querySelector(".bi-three-dots-vertical");
   menuOpenButton.addEventListener("click", (e) => {
+    e.stopPropagation();
     if (hiddenMenu.style.display === 'none') {
       hiddenMenu.style.display = 'flex';
     } else if (hiddenMenu.style.display === 'flex') {
       hiddenMenu.style.display = 'none';
     }
+    
+  })
+
+  deleteButton.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const startTime = performance.now();
+    const noteIndex = [...note.parentElement.children].indexOf(note);
+    note.remove();
+
+    notes.splice(noteIndex, 1);
+    localStorage.setItem("notes", JSON.stringify(notes));
+    const duration = performance.now() - startTime;
+    console.log(`menuOpenButton took ${duration}ms`);
   })
 
   noteGrid.appendChild(note);
