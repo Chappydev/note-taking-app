@@ -64,7 +64,7 @@ function addNote({ title, content }) {
   hiddenMenu.style.display = 'none';
 
   const menuOpenButton = note.querySelector(".bi-three-dots-vertical");
-  menuOpenButton.addEventListener("click", (e) => {
+  menuOpenButton.addEventListener("click", e => {
     e.stopPropagation();
     if (hiddenMenu.style.display === 'none') {
       hiddenMenu.style.display = 'flex';
@@ -74,22 +74,24 @@ function addNote({ title, content }) {
     
   })
 
-  deleteButton.addEventListener("click", (e) => {
+  deleteButton.addEventListener("click", e => {
     e.stopPropagation();
-    const startTime = performance.now();
     const noteIndex = [...note.parentElement.children].indexOf(note);
+
     note.remove();
 
     notes.splice(noteIndex, 1);
     localStorage.setItem("notes", JSON.stringify(notes));
-    const duration = performance.now() - startTime;
-    console.log(`menuOpenButton took ${duration}ms`);
+  })
+
+  note.addEventListener("click", e => {
+    
   })
 
   noteGrid.appendChild(note);
 }
 
-noteForm.addEventListener("submit", (e) => {
+noteForm.addEventListener("submit", e => {
   e.preventDefault();
   const titleInput = noteForm.children[0];
   const contentInput = noteForm.children[1];
