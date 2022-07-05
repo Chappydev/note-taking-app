@@ -201,6 +201,74 @@ button {
   height: 1.2em;
 }
 
+.modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.inner-modal {
+  position: relative;
+  min-width: 50%;
+  max-width: 90%;
+  min-height: 50%;
+  max-height: 90%;
+  background-color: var(--light-text);
+  border-radius: 10px;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.inner-modal::after {
+  content: '';
+  background-color: var(--tertiary);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: calc(var(--h2-font-size) + 1rem + 4px);
+}
+
+.modal-header {
+  position: relative;
+  z-index: 1;
+}
+
+.modal-title {
+
+}
+
+.close-modal {
+  fill: var(--secondary-darker);
+  fill-opacity: 0.6;
+  position: absolute;
+  right: -1rem;
+  top: -1rem;
+  height: calc(var(--h2-font-size) + 1rem + 4px);
+  width: auto;
+  padding: 0.6rem;
+  z-index: 2;
+}
+
+.close-modal:hover {
+  fill-opacity: 0.9;
+}
+
+.modal-content {
+
+}
+
+.hidden {
+  display: none;
+}
+
 @media only screen and (max-width: 480px) {
 
   #form-container {
