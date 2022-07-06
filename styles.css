@@ -215,6 +215,8 @@ button {
 }
 
 .inner-modal {
+  display: flex;
+  flex-direction: column;
   position: relative;
   min-width: 50%;
   max-width: 90%;
@@ -262,7 +264,9 @@ button {
 }
 
 .modal-content {
-
+  /* height: calc(100% - calc(var(--h2-font-size) + 1rem + 4px) - 1rem); */
+  white-space: pre-wrap;
+  overflow-y: auto;
 }
 
 .hidden {

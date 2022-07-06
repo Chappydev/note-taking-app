@@ -1,5 +1,9 @@
 const noteGrid = document.querySelector("#note-container");
 const noteForm = document.querySelector("#note-form");
+const noteModal = document.querySelector("#note-modal")
+const noteModalTitle = noteModal.querySelector(".modal-title");
+const noteModalContent = noteModal.querySelector(".modal-content");
+const modalClose = document.querySelector(".close-modal");
 
 let notes;
 if (localStorage.getItem("notes") !== null) {
@@ -84,11 +88,22 @@ function addNote({ title, content }) {
     localStorage.setItem("notes", JSON.stringify(notes));
   })
 
+  // click note to open modal with that note's content
   note.addEventListener("click", e => {
-    
+    // add note's content
+    const noteIndex = [...note.parentElement.children].indexOf(note);
+    noteModalTitle.textContent = notes[noteIndex].title;
+    noteModalContent.textContent = notes[noteIndex].content;
+
+    // open note
+    noteModal.classList.toggle("hidden", noteModal.style.display === 'none');
   })
 
   noteGrid.appendChild(note);
+}
+
+function closeModal(e) {
+  e.target.closest(".modal").classList.toggle("hidden", noteModal.style.display !== 'none');
 }
 
 noteForm.addEventListener("submit", e => {
@@ -99,4 +114,16 @@ noteForm.addEventListener("submit", e => {
   notes.push(newNoteObj);
   localStorage.setItem("notes", JSON.stringify(notes));
   addNote(newNoteObj);
+})
+
+noteModal.querySelector(".inner-modal").addEventListener("click", e => {
+  e.stopPropagation();
+})
+modalClose.addEventListener("click", closeModal);
+noteModal.addEventListener("click", closeModal);
+document.addEventListener("keydown", e => {
+  if (noteModal.style.display === 'none') { return };
+  if ((e.key === "Escape" || e.key === "Esc")) {
+    noteModal.classList.toggle("hidden", noteModal.style.display !== 'none');
+  }
 })
