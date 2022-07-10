@@ -3,6 +3,7 @@ const noteForm = document.querySelector("#note-form");
 const noteModal = document.querySelector("#note-modal")
 const noteModalTitle = noteModal.querySelector(".modal-title");
 const noteModalContent = noteModal.querySelector(".modal-content");
+noteModal.dataset.noteIndex = undefined;
 const modalClose = document.querySelector(".close-modal");
 
 let notes;
@@ -92,8 +93,9 @@ function addNote({ title, content }) {
   note.addEventListener("click", e => {
     // add note's content
     const noteIndex = [...note.parentElement.children].indexOf(note);
-    noteModalTitle.textContent = notes[noteIndex].title;
-    noteModalContent.textContent = notes[noteIndex].content;
+    noteModalTitle.value = notes[noteIndex].title;
+    noteModalContent.value = notes[noteIndex].content;
+    noteModal.dataset.noteIndex = noteIndex;
 
     // open note
     noteModal.classList.toggle("hidden", noteModal.style.display === 'none');
