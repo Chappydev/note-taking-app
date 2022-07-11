@@ -47,6 +47,7 @@ h1 {
   text-shadow: 3px 3px var(--tertiary-darker);
   letter-spacing: 0.02em;
   word-spacing: 0.1em;
+  text-align: center;
 }
 
 h2 {
@@ -84,6 +85,10 @@ button {
   font-weight: 500;
 }
 
+#form-container {
+  width: 90%;
+}
+
 #note-form {
   background-color: var(--light-text);
   padding: 1em;
@@ -93,6 +98,31 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: auto;
+}
+
+#text-input,
+#title-input {
+  border: 2px solid #0b153134;
+  border-radius: 10px;
+  width: 50%;
+  padding: 0.5em;
+  background-color: var(--light-text);
+}
+
+#title-input {
+  font-weight: 700;
+  font-family: 'Work Sans', Arial, sans-serif;
+  font-size: calc(var(--h2-font-size) - 2px);
+  margin-top: 0.5em;
+}
+
+#text-input {
+  font-size: 1rem;
+  font-family: 'Taviraj', Georgia, 'Times New Roman', serif;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  min-height: 180px;
 }
 
 #note-submit {
@@ -103,6 +133,7 @@ button {
   color: var(--light-text);
   font-size: 1.1em;
   font-weight: 500;
+  margin: 1em 0 0.5em;
 }
 
 #note-container {
@@ -288,6 +319,8 @@ button {
   overflow-y: auto;
   padding: 0.5em;
   background-color: var(--light-text);
+  font-size: 1rem;
+  font-family: 'Taviraj', Georgia, 'Times New Roman', serif;
 }
 
 .hidden {
