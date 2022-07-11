@@ -3,6 +3,7 @@ const noteForm = document.querySelector("#note-form");
 const noteModal = document.querySelector("#note-modal")
 const noteModalTitle = noteModal.querySelector(".modal-title");
 const noteModalContent = noteModal.querySelector(".modal-content");
+const modalInputs = noteModal.querySelectorAll("input");
 noteModal.dataset.noteIndex = undefined;
 const modalClose = document.querySelector(".close-modal");
 
@@ -105,7 +106,23 @@ function addNote({ title, content }) {
 }
 
 function closeModal(e) {
-  e.target.closest(".modal").classList.toggle("hidden", noteModal.style.display !== 'none');
+  const currentNote = [...noteGrid.children][noteModal.dataset.noteIndex];
+  const currentNoteHeader = currentNote.querySelector(".note-title");
+  const currentNoteParagraph = currentNote.querySelector(".note-text");
+  clearTimeout(keyTimeout);
+  updateNote(noteModal.dataset.noteIndex);
+  currentNoteHeader.textContent = notes[noteModal.dataset.noteIndex].title;
+  currentNoteParagraph.textContent = notes[noteModal.dataset.noteIndex].content;
+  if (e.target.closest(".modal") === null) {
+    noteModal.classList.toggle("hidden", noteModal.style.display !== 'none')
+  } else {
+    e.target.closest(".modal").classList.toggle("hidden", noteModal.style.display !== 'none');
+  }
+}
+
+function updateNote(index) {
+  notes[index] = createNoteObject(noteModalTitle.value, noteModalContent.value);
+  localStorage.setItem("notes", JSON.stringify(notes));
 }
 
 noteForm.addEventListener("submit", e => {
@@ -126,6 +143,16 @@ noteModal.addEventListener("click", closeModal);
 document.addEventListener("keydown", e => {
   if (noteModal.style.display === 'none') { return };
   if ((e.key === "Escape" || e.key === "Esc")) {
-    noteModal.classList.toggle("hidden", noteModal.style.display !== 'none');
+    closeModal(e);
   }
+})
+
+let keyTimeout;
+modalInputs.forEach(input => {
+    input.addEventListener("keydown", e => {
+      if (e.key !== "Escape" && e.key !== "Esc") {
+        clearTimeout(keyTimeout);
+        keyTimeout = setTimeout(updateNote, 1500, noteModal.dataset.noteIndex);
+      }
+  })
 })
