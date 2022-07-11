@@ -107,12 +107,30 @@ function addNote({ title, content }) {
 
 function closeModal(e) {
   const currentNote = [...noteGrid.children][noteModal.dataset.noteIndex];
-  const currentNoteHeader = currentNote.querySelector(".note-title");
-  const currentNoteParagraph = currentNote.querySelector(".note-text");
+  let currentNoteHeader = currentNote.querySelector(".note-title");
+  let currentNoteParagraph = currentNote.querySelector(".note-text");
   clearTimeout(keyTimeout);
   updateNote(noteModal.dataset.noteIndex);
+  if (currentNoteHeader === null) {
+    currentNoteHeader = document.createElement("h2");
+    currentNoteHeader.classList.add("note-title");
+    currentNote.prepend(currentNoteHeader);
+    currentNote.removeAttribute("data-title");
+  }
   currentNoteHeader.textContent = notes[noteModal.dataset.noteIndex].title;
+  if (currentNoteParagraph === null) {
+    currentNoteParagraph = document.createElement("p");
+    currentNoteParagraph.classList.add("note-text");
+    currentNote.insertBefore(currentNoteParagraph, currentNote.querySelector(".hidden-menu"));
+  }
   currentNoteParagraph.textContent = notes[noteModal.dataset.noteIndex].content;
+  if (notes[noteModal.dataset.noteIndex].title === "") {
+    currentNote.removeChild(currentNoteHeader);
+    currentNote.dataset.title = false;
+  }
+  if (notes[noteModal.dataset.noteIndex].content === "") {
+    currentNote.removeChild(currentNoteParagraph);
+  }
   if (e.target.closest(".modal") === null) {
     noteModal.classList.toggle("hidden", noteModal.style.display !== 'none')
   } else {
